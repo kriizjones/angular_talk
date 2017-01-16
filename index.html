@@ -6,15 +6,21 @@
 </head>
 <body>
 <div ng-app="demoApp" ng-controller="mainController">
-    <h1>{{['Hello', firstName, lastName].join(' ')}}!</h1>
+    <say-hello></say-hello>
 </div>
 
 <script>
     var demoApp = angular.module("demoApp", []);
 
     demoApp.controller("mainController", function($scope) {
-        $scope.firstName = "Kristoffer";
-        $scope.lastName = "Karlsson";
+        $scope.firstName = "Thomas";
+        $scope.lastName = "Ochman";
+    });
+
+    demoApp.directive("sayHello", function() {
+        return {
+            template : "<h1>{{['Hello', firstName, lastName].join(' ')}}!</h1>"
+        };
     });
 </script>
 </body>
