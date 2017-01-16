@@ -5,17 +5,34 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 </head>
 <body>
+
 <div ng-app="demoApp" ng-controller="mainController">
+
+    <form ng-submit="addUser()" >
+        <input type="text" ng-model="newUser.firstName" placeholder="Give me a first name...">
+        <input type="text" ng-model="newUser.lastName" placeholder="Give me a last name...">
+        <button type="submit">ADD</button>
+    </form>
+
     <div ng-repeat="user in users">
         <say-hello message="Hi"></say-hello>
     </div>
 </div>
+
+
+
+
 
 <script>
     var demoApp = angular.module("demoApp", []);
 
     demoApp.controller("mainController", function($scope, userService) {
         $scope.users = userService.users();
+        $scope.newUser = {};
+        $scope.addUser = function(){
+            userService.add($scope.newUser);
+            $scope.newUser = {};
+        }
     });
 
 
@@ -40,6 +57,9 @@
         return {
             users: function(){
                 return collection;
+            },
+            add: function(object){
+                collection.push(object);
             }
         }
     });
