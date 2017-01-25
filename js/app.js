@@ -1,3 +1,4 @@
+var demoApp = angular.module("demoApp", []);
 
 angular.module("demoApp").directive("sayHello", function () {
     return {
